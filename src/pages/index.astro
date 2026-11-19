@@ -1,37 +1,29 @@
 ---
 import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { SITE_TITLE } from '../consts';
 
 const pioneers = (await getCollection('pioneers')).sort((a, b) =>
   a.data.title.localeCompare(b.data.title),
 );
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="icon" href="/favicon.ico" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="generator" content={Astro.generator} />
-    <title>Web Pioneers</title>
-  </head>
-  <body>
-    <h1>Web Pioneers</h1>
+<BaseLayout>
+  <h1>{SITE_TITLE}</h1>
 
-    {
-      pioneers.length > 0 ? (
-        <ul>
-          {pioneers.map((pioneer) => (
-            <li>
-              <a href={`/pioneers/${pioneer.id}`}>{pioneer.data.title}</a>
-            </li>
-          ))}
-        </ul>
-      ) : (
-        <p>
-          No pioneers yet. Add one in <a href="/keystatic">Keystatic</a>.
-        </p>
-      )
-    }
-  </body>
-</html>
+  {
+    pioneers.length > 0 ? (
+      <ul>
+        {pioneers.map((pioneer) => (
+          <li>
+            <a href={`/pioneers/${pioneer.id}`}>{pioneer.data.title}</a>
+          </li>
+        ))}
+      </ul>
+    ) : (
+      <p>
+        No pioneers yet. Add one in <a href="/keystatic">Keystatic</a>.
+      </p>
+    )
+  }
+</BaseLayout>

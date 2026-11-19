@@ -1,5 +1,6 @@
 ---
 import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
 
 // One static page per pioneer, at /pioneers/<slug>.
 export async function getStaticPaths() {
@@ -12,20 +13,25 @@ export async function getStaticPaths() {
 
 const { pioneer } = Astro.props;
 const { Content } = await render(pioneer);
+const { homepage } = pioneer.data;
+// Show the homepage as "zeldman.com" rather than "https://zeldman.com/".
+const homepageLabel = homepage?.replace(/^https?:\/\//, '').replace(/\/$/, '');
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="icon" href="/favicon.ico" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="generator" content={Astro.generator} />
-    <title>{pioneer.data.title}</title>
-  </head>
-  <body>
-    <p><a href="/">← All pioneers</a></p>
-    <h1>{pioneer.data.title}</h1>
-    <Content />
-  </body>
-</html>
+<BaseLayout title={pioneer.data.title}>
+  <p><a href="/">← All pioneers</a></p>
+
+  <h1>{pioneer.data.title}</h1>
+
+  {pioneer.data.image && <img src={pioneer.data.image} alt={pioneer.data.title} />}
+
+  {pioneer.data.intro && <p>{pioneer.data.intro}</p>}
+
+  {homepage && (
+    <p>
+      <a href={homepage}>{homepageLabel}</a>
+    </p>
+  )}
+
+  <Content />
+</BaseLayout>
