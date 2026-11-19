@@ -1,5 +1,5 @@
 // keystatic.config.ts
-import { config, fields, collection, singleton } from '@keystatic/core';
+import { config, fields, collection } from '@keystatic/core';
 
 // Storage strategy:
 // - `astro dev`     → `local`: the admin at /keystatic writes straight to src/content/.
@@ -31,26 +31,6 @@ export default config({
       },
     }),
   },
-  singletons: {
-    // Saved to src/content/pages/sample.mdoc, rendered at /sample.
-    samplePage: singleton({
-      label: 'Sample Page',
-      path: 'src/content/pages/sample',
-      format: { contentField: 'content' },
-      schema: {
-        title: fields.text({ label: 'Title', validation: { isRequired: true } }),
-        description: fields.text({ label: 'Description', multiline: true }),
-        content: fields.markdoc({
-          label: 'Content',
-          options: {
-            // Images added in the editor are saved here and served from /images/kitchen-sink/.
-            image: {
-              directory: 'public/images/kitchen-sink',
-              publicPath: '/images/kitchen-sink/',
-            },
-          },
-        }),
-      },
-    }),
-  },
+
+
 });
