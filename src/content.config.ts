@@ -6,8 +6,14 @@ import { z } from 'astro/zod';
 // The entry id is the slug Keystatic generates from the title.
 const pioneers = defineCollection({
   loader: glob({ pattern: '*.mdoc', base: './src/content/pioneers' }),
-  schema: z.object({
+    schema: z.object({
     title: z.string(),
+    // Public URL of the pioneer's image, e.g. "/images/pioneers/<slug>/image.jpg".
+    image: z.string().optional(),
+    // Short bio shown on the pioneer's page.
+    intro: z.string().optional(),
+    // Link to the pioneer's site (Keystatic writes null when it's left empty).
+    homepage: z.url().nullish(),
   }),
 });
 

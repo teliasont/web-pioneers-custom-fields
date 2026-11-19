@@ -27,10 +27,20 @@ export default config({
       format: { contentField: 'content' },
       schema: {
         title: fields.slug({ name: { label: 'Title' } }),
+                // Saved to public/images/pioneers/<slug>/image.<ext>, served from /images/pioneers/<slug>/.
+        image: fields.image({
+          label: 'Image',
+          directory: 'public/images/pioneers',
+          publicPath: '/images/pioneers/',
+        }),
+        intro: fields.text({ label: 'Intro', multiline: true }),
+        homepage: fields.url({ label: 'Homepage' }),
         content: fields.markdoc({ label: 'Content' }),
       },
     }),
   },
+
+  
 
 
 });
