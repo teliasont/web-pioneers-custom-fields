@@ -14,6 +14,11 @@ const useCloud = !import.meta.env.DEV;
 export default config({
   storage: useCloud ? { kind: 'cloud' } : { kind: 'local' },
   cloud: { project: KEYSTATIC_CLOUD_PROJECT },
+
+  ui: {
+    brand: {name: 'Web Pioneers'}
+  },
+
   collections: {
     posts: collection({
       label: 'Posts',
