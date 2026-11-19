@@ -19,11 +19,11 @@ export default config({
     brand: {name: 'Web Pioneers'}
   },
 
-  collections: {
-    posts: collection({
-      label: 'Posts',
+   collections: {
+    pioneers: collection({
+      label: 'Pioneers',
       slugField: 'title',
-      path: 'src/content/posts/*',
+      path: 'src/content/pioneers/*',
       format: { contentField: 'content' },
       schema: {
         title: fields.slug({ name: { label: 'Title' } }),

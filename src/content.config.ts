@@ -2,24 +2,13 @@ import { defineCollection } from 'astro:content';
 import { glob } from 'astro/loaders';
 import { z } from 'astro/zod';
 
-// Keystatic singletons stored as src/content/pages/<name>.mdoc.
-// The entry id is the file name, e.g. "sample".
-
-// const pages = defineCollection({
-//   loader: glob({ pattern: '*.mdoc', base: './src/content/pages' }),
-//   schema: z.object({
-//     title: z.string(),
-//     description: z.string().optional(),
-//   }),
-// });
-
-// Keystatic "Posts" collection, stored as src/content/posts/<slug>.mdoc.
+// Keystatic "Pioneers" collection, stored as src/content/pioneers/<slug>.mdoc.
 // The entry id is the slug Keystatic generates from the title.
-const posts = defineCollection({
-  loader: glob({ pattern: '*.mdoc', base: './src/content/posts' }),
+const pioneers = defineCollection({
+  loader: glob({ pattern: '*.mdoc', base: './src/content/pioneers' }),
   schema: z.object({
     title: z.string(),
   }),
 });
 
-export const collections = { posts };
+export const collections = { pioneers };
