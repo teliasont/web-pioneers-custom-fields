@@ -1,0 +1,31 @@
+---
+import { getCollection, render } from 'astro:content';
+
+// One static page per post, at /posts/<slug>.
+export async function getStaticPaths() {
+	const posts = await getCollection('posts');
+	return posts.map((post) => ({
+		params: { slug: post.id },
+		props: { post },
+	}));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" href="/favicon.ico" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{post.data.title}</title>
+	</head>
+	<body>
+		<p><a href="/">← All posts</a></p>
+		<h1>{post.data.title}</h1>
+		<Content />
+	</body>
+</html>

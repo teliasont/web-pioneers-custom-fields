@@ -1,0 +1,90 @@
+---
+title: Sample Page
+description: A kitchen sink of everything the Content field can hold.
+---
+This page is a Keystatic **singleton**, and its Content field shows every kind of formatting the editor supports. Edit it at [/keystatic](/keystatic) under *Sample Page*.
+
+## Text formatting
+
+Plain text with **bold**, *italic*, ~~strikethrough~~, `inline code`, and ***bold italic***. Links can point [inside the site](/) or [to another site](https://keystatic.com/docs).
+
+## Headings
+
+# Heading 1
+
+## Heading 2
+
+### Heading 3
+
+#### Heading 4
+
+##### Heading 5
+
+###### Heading 6
+
+## Lists
+
+Unordered list:
+
+- First item
+- Second item
+  - Nested item
+  - Another nested item
+- Third item
+
+Ordered list:
+
+1. Install dependencies
+2. Run `npm run dev`
+3. Open `/keystatic`
+   1. Choose *Sample Page*
+   2. Edit and save
+
+## Blockquote
+
+> Content is stored as Markdoc files in Git, so every edit has history.
+>
+> — The Keystatic approach
+
+## Code block
+
+```ts
+// keystatic.config.ts
+const useCloud = !import.meta.env.DEV;
+
+export default config({
+  storage: useCloud ? { kind: 'cloud' } : { kind: 'local' },
+});
+```
+
+## Table
+
+{% table %}
+- Element
+- Markdoc syntax
+- Rendered as
+---
+- Bold
+- `**text**`
+- `<strong>`
+---
+- Link
+- `[text](url)`
+- `<a>`
+---
+- Divider
+- `---`
+- `<hr>`
+{% /table %}
+
+## Image
+
+![Placeholder illustration of a circle and text lines](/images/kitchen-sink/editor-image.svg "Images uploaded in the editor are saved to public/images/kitchen-sink/")
+
+## Divider
+
+Content above the line.
+
+---
+
+Content below the line.

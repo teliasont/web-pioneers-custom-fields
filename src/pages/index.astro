@@ -1,0 +1,43 @@
+---
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('posts')).sort((a, b) =>
+	a.data.title.localeCompare(b.data.title),
+);
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" href="/favicon.ico" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<title>Astro + Keystatic CMS + CloudFlare</title>
+	</head>
+	<body>
+		<h1>Astro + Keystatic CMS + CloudFlare</h1>
+
+		<h2>Posts</h2>
+		{
+			posts.length > 0 ? (
+				<ul>
+					{posts.map((post) => (
+						<li>
+							<a href={`/posts/${post.id}`}>{post.data.title}</a>
+						</li>
+					))}
+				</ul>
+			) : (
+				<p>
+					No posts yet. Add one in <a href="/keystatic">Keystatic</a>.
+				</p>
+			)
+		}
+
+		<h2>Pages</h2>
+		<ul>
+			<li><a href="/sample">Sample Page</a></li>
+		</ul>
+	</body>
+</html>

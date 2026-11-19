@@ -1,0 +1,25 @@
+---
+import { getEntry, render } from 'astro:content';
+
+const page = await getEntry('pages', 'sample');
+if (!page) {
+	throw new Error('Missing src/content/pages/sample.mdoc — save the Sample Page in /keystatic.');
+}
+const { Content } = await render(page);
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" href="/favicon.ico" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{page.data.title}</title>
+		{page.data.description && <meta name="description" content={page.data.description} />}
+	</head>
+	<body>
+		<h1>{page.data.title}</h1>
+		<Content />
+	</body>
+</html>
